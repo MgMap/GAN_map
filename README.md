@@ -22,3 +22,10 @@ This GAN model use GPU which save the RAM usage and train data faster than CPU t
 Using RAM makes not only slowdown PC, also crash and makes memory insufficient while in training process.
 
 Just run the python file and it will generate the image. Have Fun.
+
+# Final Result
+
+![gan_image_25740](https://github.com/BarbatosV2/GAN/assets/63419320/76da3070-8d35-4cf4-b2e9-300c030acfe6)
+
+Looks like dogs to me XD
+
