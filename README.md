@@ -23,6 +23,10 @@ Using RAM makes not only slowdown PC, also crash and makes memory insufficient w
 
 Just run the python file and it will generate the image. Have Fun.
 
+# Initial Result
+
+![gan_image_1](https://github.com/BarbatosV2/GAN/assets/63419320/d011ad1d-5aba-4906-afd3-916c55fde0a2)
+
 # Final Result
 
 ![gan_image_25740](https://github.com/BarbatosV2/GAN/assets/63419320/76da3070-8d35-4cf4-b2e9-300c030acfe6)
