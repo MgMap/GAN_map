@@ -113,9 +113,15 @@ def train_gan(epochs, batch_size, save_interval):
             loss_G.backward()
             optimizer_G.step()
 
+            # Calculate accuracy
+            output_real_acc = output_real >= 0.5
+            output_fake_acc = output_fake < 0.5
+            acc_real = (output_real_acc.sum().float() / batch_size) * 100
+            acc_fake = (output_fake_acc.sum().float() / batch_size) * 100
+
             # Print the progress
             loop.set_description(f"Epoch [{epoch}/{epochs}]")
-            loop.set_postfix(D_loss=(loss_real + loss_fake).item(), G_loss=loss_G.item())
+            loop.set_postfix(D_loss=(loss_real + loss_fake).item(), G_loss=loss_G.item(), Acc_real=acc_real.item(), Acc_fake=acc_fake.item())
 
             # Save generated images
             total_batches = len(train_loader) * epoch + i + 1
