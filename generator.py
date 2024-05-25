@@ -66,7 +66,7 @@ def generate_images(model, num_images=1):
 
 # Load the trained model
 generator_loaded = Generator().to(device)
-generator_loaded = load_model(generator_loaded, epoch=2000)  # Adjust epoch number as needed
+generator_loaded = load_model(generator_loaded, epoch=400)  # Adjust epoch number as needed
 
 # Generate and save one image
 generate_images(generator_loaded, num_images=1)
