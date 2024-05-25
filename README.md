@@ -23,6 +23,8 @@ Using RAM makes not only slowdown PC, also crash and makes memory insufficient w
 
 Just run the python file and it will generate the image. Have Fun.
 
+PS - use GANV2.py file to save the train data and use generator.py to generate the images using the saved model file
+
 # Initial Result
 
 ![gan_image_1](https://github.com/BarbatosV2/GAN/assets/63419320/d011ad1d-5aba-4906-afd3-916c55fde0a2)
