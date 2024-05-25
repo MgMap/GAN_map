@@ -23,6 +23,12 @@ Using RAM makes not only slowdown PC, also crash and makes memory insufficient w
 
 Just run the python file and it will generate the image. Have Fun.
 
+To start train the model, just run the GANV2.py. This will save the image of how the training process is looks like and it will also save epoch models in the models folder.
+
+The checkpoint.py will start from the epoch where you stopped from. For example, your computer just crashed while training and stops at 300 epoch, this code will restart the training process from that epoch. **If it does not work, the last pth file from models folder might be correpted so please delete the last epoch pth file.**
+
+generator.py will generate the image, fix the epoch number form the code to use the perfect trained model.
+
 PS - use GANV2.py file to save the train data and use generator.py to generate the images using the saved model file
 
 # Initial Result
