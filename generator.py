@@ -34,10 +34,28 @@ class Generator(nn.Module):
 
 # Function to load the model
 def load_model(model, epoch):
-    model_dir = os.path.expanduser('~/Documents/GAN/models')
+    model_dir = os.path.expanduser('~/Documents/GAN_map/models')
     model_path = f"{model_dir}/generator_epoch_{epoch}.pth"
-    model.load_state_dict(torch.load(model_path, map_location=device))
-    model.eval()
+    if not os.path.exists(model_path):
+        raise FileNotFoundError(f"Model file not found: {model_path}")
+    
+    try:
+        # Load the full checkpoint
+        checkpoint = torch.load(model_path, map_location=device)
+        # Extract the generator's state dictionary if it exists
+        if 'generator_state_dict' in checkpoint:
+            generator_state_dict = checkpoint['generator_state_dict']
+        else:
+            raise KeyError("generator_state_dict key is missing in the checkpoint")
+        
+        # Load the generator state dictionary into the model
+        model.load_state_dict(generator_state_dict)
+        model.eval()
+    except KeyError as e:
+        raise RuntimeError(f"Missing key in checkpoint: {e}")
+    except Exception as e:
+        raise RuntimeError(f"Error loading the model: {e}")
+    
     return model
 
 # Function to generate and save one image
@@ -52,7 +70,7 @@ def generate_images(model, num_images=1):
         ax.axis('off')
 
         # Ensure the save directory exists
-        save_dir = os.path.join(os.path.dirname(__file__), 'generatedImages')
+        save_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'generatedImages')
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
 
@@ -66,7 +84,7 @@ def generate_images(model, num_images=1):
 
 # Load the trained model
 generator_loaded = Generator().to(device)
-generator_loaded = load_model(generator_loaded, epoch=400)  # Adjust epoch number as needed
+generator_loaded = load_model(generator_loaded, epoch=10)  # Adjust epoch number as needed
 
 # Generate and save one image
 generate_images(generator_loaded, num_images=1)
